@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.nakonechnyi.domain.validator.Phone;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -19,27 +19,17 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "contacts")
 @Getter @Setter
-@ToString (exclude = "password")
+@ToString
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotEmpty
-    @Size (min = 3)
-    @Pattern(regexp = "^[a-z]*$")
-    private String login;
+    @NotNull
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch=FetchType.LAZY)
+    private User owner;
 
-    //TODO hash
-//    @JsonIgnore
-    @NotEmpty
-    @Size (min = 5)
-    private String password;
-    @NotEmpty
-    @Size (min = 5)
-    private String pib;
-    @NotEmpty
-    private String info;
     @NotEmpty
     @Size (min = 4)
     private String lastName;

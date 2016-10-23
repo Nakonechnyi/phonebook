@@ -1,21 +1,24 @@
 package org.nakonechnyi.service;
 
 import org.nakonechnyi.domain.Contact;
-import org.nakonechnyi.repository.IContactRepository;
+import org.nakonechnyi.domain.User;
+import org.nakonechnyi.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @autor A_Nakonechnyi
  * @date 23.10.2016.
  */
-
 @Service
-@Transactional
-public class ContactService {
+public class UserService {
+
 
     @Autowired
-    private IContactRepository contactRepository;
+    private IUserRepository userRepository;
+
+    public User register(User registration) {
+        return userRepository.save(registration);
+    }
 
 }
