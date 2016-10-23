@@ -5,6 +5,7 @@ import org.nakonechnyi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @autor A_Nakonechnyi
  * @date 23.10.2016.
  */
+@Controller
 public class UserController {
 
 
@@ -23,5 +25,11 @@ public class UserController {
     @RequestMapping(value = "/user/registration", method = RequestMethod.POST)
     public HttpEntity<?> registration(@RequestBody @Validated User registration){
         return ResponseEntity.ok(userService.register(registration));
+    }
+
+    @RequestMapping(value="/1")
+    public String index(){
+        System.err.println("/1");
+        return "redirect:/index.html";
     }
 }
