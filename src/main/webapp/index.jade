@@ -18,8 +18,7 @@ mixin form
         input(type='email' placeholder='Email Address')
         input(type='tel' placeholder='Phone Number')
         button Register
-    .cta
-      a(href='http://andytran.me') Forgot your password?
+
 
 // Input Mixin
 mixin input(type, placeholder)
@@ -29,11 +28,6 @@ mixin input(type, placeholder)
 // Button Mixin
 mixin button(value)
   button=value
-  
-// Pen Title
-.pen-title
-  h1 Flat Login Form
-  span
-    | Pen <i class='fa fa-paint-brush'></i> + <i class='fa fa-code'></i> by <a href='http://andytran.me'>Andy Tran</a>
+
 // Form Module
 +form

@@ -7,9 +7,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @autor A_Nakonechnyi
@@ -18,18 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserController {
 
-
     @Autowired
-    private static UserService userService;
+    private UserService userService;
 
-    @RequestMapping(value = "/user/registration", method = RequestMethod.POST)
-    public HttpEntity<?> registration(@RequestBody @Validated User registration){
-        return ResponseEntity.ok(userService.register(registration));
+    @PostMapping(value = "/user/registration")
+    public HttpEntity<?> registration(@ModelAttribute("user") @Validated User user){
+        return ResponseEntity.ok(userService.register(user));
     }
 
-    @RequestMapping(value="/1")
-    public String index(){
-        System.err.println("/1");
-        return "redirect:/index.html";
-    }
 }

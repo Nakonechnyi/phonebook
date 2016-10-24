@@ -18,6 +18,7 @@ public class UserService {
     private IUserRepository userRepository;
 
     public User register(User registration) {
+        System.err.println("userService");
         return userRepository.save(registration);
     }
 

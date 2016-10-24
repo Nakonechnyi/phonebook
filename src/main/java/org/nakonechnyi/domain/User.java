@@ -26,6 +26,10 @@ public class User {
     private long id;
 
     @NotEmpty
+    @Size (min = 5)
+    private String pib;
+
+    @NotEmpty
     @Size(min = 3)
     @Pattern(regexp = "^[a-z]*$")
     private String login;
@@ -35,10 +39,11 @@ public class User {
     @NotEmpty
     @Size (min = 5)
     private String password;
-    @NotEmpty
-    @Size (min = 5)
-    private String pib;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL/*, mappedBy = "user"*/)
+
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST/*, mappedBy = "user"*/)
     private Collection<Contact> contacts;
+
+
+
 }
