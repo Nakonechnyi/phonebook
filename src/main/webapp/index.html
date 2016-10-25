@@ -23,9 +23,9 @@
   </div>
   <div class="form">
     <h2>Login to your account</h2>
-    <form action="/api" method="GET">
-      <input type="text" placeholder="Username"/>
-      <input type="password" placeholder="Password"/>
+    <form action="/login" method="GET">
+      <input type="text"  name="j_username" placeholder="Login"/>
+      <input type="password"  name="j_password" placeholder="Password"/>
       <button>Login</button>
     </form>
   </div>
@@ -33,17 +33,6 @@
     <h2>Create an account</h2>
     <div>
     <form action="/user/registration" modelAttribute="user" action="#" th:action="@{/user/registration}" th:object="${user}" method="post" >
-      <!--<table>
-        <tr>
-          <td><form:input path="pib"placeholder="ПІБ / ФИО" /></td>
-        </tr>
-        <tr>
-          <td><form:input path="login" /></td>
-        </tr>
-        <tr>
-          <td><form:input path="password" /></td>
-        </tr>
-      </table>-->
       <input type="text" id="pib" name="pib" th:field="*{pib}" placeholder="ПІБ / ФИО"/>
       <input type="text" id="login" name="login" th:field="*{login}"  placeholder="Login"/><!--th:field="*{login}"-->
       <input type="password" id="password"  name="password" th:field="*{password}" placeholder="Password"/>
