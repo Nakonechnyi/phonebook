@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.nakonechnyi.domain.validator.Phone;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -21,12 +20,13 @@ import javax.validation.constraints.Size;
 @Getter @Setter
 @ToString
 public class Contact {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
-    @NotNull
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+//    @NotNull Sets by handler
+    @JoinColumn(name = "owner", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch=FetchType.LAZY)
     private User owner;
 
@@ -44,7 +44,6 @@ public class Contact {
     @NotEmpty
     private String phone;
 
-    @Phone
     private String homePhone;
 
     private String address;

@@ -49,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 ;
     }
 
+/*
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.inMemoryAuthentication()
 //                .withUser("user").password("password").roles("USER");
@@ -60,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery("select login, password from users where login=?")
                 .authoritiesByUsernameQuery("select login, 'USER' from users where login=?");
     }
+*/
 
     @Bean
     public PasswordEncoder passwordEncoder(){

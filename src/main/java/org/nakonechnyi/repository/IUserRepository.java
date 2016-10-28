@@ -11,4 +11,9 @@ import org.springframework.data.repository.CrudRepository;
 public interface IUserRepository extends CrudRepository<User, Long>{
 
     User findByLogin(String s);
+
+    User getById(long id);
+
+
+//    User getByLogin(String login);
 }

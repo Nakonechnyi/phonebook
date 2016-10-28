@@ -1,5 +1,6 @@
 package org.nakonechnyi.controller;
 
+import org.nakonechnyi.config.CustomPropertySourcesPlaceholderConfigurer;
 import org.nakonechnyi.domain.User;
 import org.nakonechnyi.service.ISecurityService;
 import org.nakonechnyi.service.UserServiceImpl;
@@ -33,19 +34,6 @@ public class UserController {
         userService.register(user);
         return ResponseEntity.ok("Successful registration!");
     }
-  /*  @RequestMapping(value="/login", method = RequestMethod.GET)
-    public String login(ModelMap model) {
-
-        return "login";
-
-    }
-
-    @RequestMapping(value="/loginError", method = RequestMethod.GET)
-    public String loginError(ModelMap model) {
-        model.addAttribute("error", "true");
-        return "login";
-
-    }*/
 
     @GetMapping(value= "/login")
     public String login(
@@ -53,11 +41,9 @@ public class UserController {
             @RequestParam(value = "j_password") String password) {
 
         System.err.println("/login");
-        securityService.autologin(login, password/*bCryptPasswordEncoder().encode(password)*/);
+        securityService.autologin(login, password);
+        new CustomPropertySourcesPlaceholderConfigurer().afterPropertiesSet();
         return "redirect:/api";
-
-//        return model;
-
     }
 
     @Bean

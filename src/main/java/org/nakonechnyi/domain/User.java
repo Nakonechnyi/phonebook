@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 
 /**
  * @autor A_Nakonechnyi
@@ -23,7 +22,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @NotEmpty
     @Size (min = 5)
@@ -34,16 +33,8 @@ public class User {
     @Pattern(regexp = "^[a-z]*$")
     private String login;
 
-    //TODO hash
-//    @JsonIgnore
     @NotEmpty
     @Size (min = 5)
     private String password;
-
-
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST/*, mappedBy = "user"*/)
-    private Collection<Contact> contacts;
-
-
 
 }
