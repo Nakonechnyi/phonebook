@@ -22,8 +22,11 @@ public class PhoneValidator implements ConstraintValidator<Phone, String>{
     @Override
     public boolean isValid(String phoneNo, ConstraintValidatorContext ctx) {
         try {
-            phoneUtil.parse(phoneNo, "UA");
-            return true;
+            if (phoneNo.length() == 15) {
+                phoneUtil.parse(phoneNo, "UA");
+                return true;
+            }
+            return false;
         } catch (NumberParseException e) {
             return false;
         }

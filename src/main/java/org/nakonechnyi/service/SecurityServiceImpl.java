@@ -25,12 +25,10 @@ public class SecurityServiceImpl implements ISecurityService {
 
     @Override
     public String findLoggedInUsername() {
-        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();//getDetails();
-//        System.err.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (userDetails instanceof UserDetails) {
             return ((UserDetails)userDetails).getUsername();
         }
-
         return null;
     }
 
