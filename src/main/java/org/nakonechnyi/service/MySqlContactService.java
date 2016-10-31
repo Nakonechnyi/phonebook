@@ -1,10 +1,10 @@
 package org.nakonechnyi.service;
 
 import org.nakonechnyi.controller.ContactController;
-import org.nakonechnyi.domain.Contact;
-import org.nakonechnyi.domain.User;
-import org.nakonechnyi.repository.IContactRepository;
-import org.nakonechnyi.repository.IUserRepository;
+import org.nakonechnyi.domain.my_sql.Contact;
+import org.nakonechnyi.domain.my_sql.User;
+import org.nakonechnyi.repository.MySqlContactRepository;
+import org.nakonechnyi.repository.MySqlUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.PersistentEntityResource;
 import org.springframework.data.rest.webmvc.PersistentEntityResourceAssembler;
@@ -26,12 +26,12 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 @Service
 @Transactional
-public class ContactServiceImpl implements IContactService {
+public class MySqlContactService implements IContactService {
 
     @Autowired
-    private IContactRepository contactRepository;
+    private MySqlContactRepository contactRepository;
     @Autowired
-    private IUserRepository userRepository;
+    private MySqlUserRepository userRepository;
     @Autowired
     private ISecurityService securityService;
 

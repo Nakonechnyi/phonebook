@@ -1,6 +1,6 @@
 package org.nakonechnyi.service;
 
-import org.nakonechnyi.domain.User;
+import org.nakonechnyi.domain.mongo_db.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,10 +17,10 @@ import java.util.Set;
  * @date 24.10.2016.
  */
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class MongoDbUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private IUserService userService;
+    private MongoDbUserService userService; //TODO interface layer
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

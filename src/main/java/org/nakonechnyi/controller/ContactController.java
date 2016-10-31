@@ -1,7 +1,7 @@
 package org.nakonechnyi.controller;
 
-import org.nakonechnyi.domain.Contact;
-import org.nakonechnyi.service.IContactService;
+import org.nakonechnyi.domain.BaseContact;
+import org.nakonechnyi.service.AbstractContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.PersistentEntityResource;
 import org.springframework.data.rest.webmvc.PersistentEntityResourceAssembler;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class ContactController {
 
     @Autowired
-    private IContactService contactService;
+    private AbstractContactService contactService;
 
     @ResponseBody
     @RequestMapping(value = "/my", method = RequestMethod.GET)
@@ -32,7 +32,7 @@ public class ContactController {
     @ResponseBody
     @RequestMapping(value = "/create", method = RequestMethod.GET) //TODO POST in RepositoryLinksResource
     public Resource create(PersistentEntityResourceAssembler assembler,
-                           @ModelAttribute("contact") @Validated Contact contact){
+                           @ModelAttribute("contact") @Validated BaseContact contact){
         return contactService.create(contact, assembler);
     }
 

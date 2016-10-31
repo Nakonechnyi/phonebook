@@ -1,16 +1,16 @@
 package org.nakonechnyi.config;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
-import org.nakonechnyi.service.UserDetailsServiceImpl;
+import org.nakonechnyi.domain.DbQualifier;
+import org.nakonechnyi.service.MongoDbUserDetailsService;
+import org.nakonechnyi.service.MySqlUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -22,11 +22,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Value("${db_type}")
+    DbQualifier.DbSource dbType;
+//    @Autowired
+//    private DataSource dataSource;
     @Autowired
-    private DataSource dataSource;
+    MongoDbUserDetailsService mongoUserDetailsService;
     @Autowired
-//    @Qualifier("customUserDetailsService")
-    UserDetailsServiceImpl userDetailsService;
+    MySqlUserDetailsService mySqlUserDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -73,9 +76,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setUserDetailsService(
+                dbType== DbQualifier.DbSource.MY_SQL ? mySqlUserDetailsService : mongoUserDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
+//    @Bean(name = "dataSource")
+//    public DriverManagerDataSource dataSource() {
+//        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+//        driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//        driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/phonebook");
+//        driverManagerDataSource.setUsername("root");
+//        driverManagerDataSource.setPassword("polipol11");
+//        return driverManagerDataSource;
+//    }
 
 }

@@ -1,6 +1,6 @@
 package org.nakonechnyi.service;
 
-import org.nakonechnyi.domain.User;
+import org.nakonechnyi.domain.my_sql.User;
 
 /**
  * @autor A_Nakonechnyi

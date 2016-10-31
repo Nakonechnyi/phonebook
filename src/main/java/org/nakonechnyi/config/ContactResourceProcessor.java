@@ -1,6 +1,6 @@
 package org.nakonechnyi.config;
 
-import org.nakonechnyi.domain.Contact;
+import org.nakonechnyi.domain.my_sql.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.support.RepositoryEntityLinks;
 import org.springframework.hateoas.Link;
@@ -26,6 +26,7 @@ public class ContactResourceProcessor implements ResourceProcessor<Resource<Cont
         contactResource.add(entityLinks.linkToSingleResource(Contact.class, contact.getId())
                 .withRel("delete"));
         contactResource.add(new Link("http://localhost:8080/logout", "logout"));
+        contactResource.add(new Link("http://localhost:8080/api", "menu"));
 
 
 

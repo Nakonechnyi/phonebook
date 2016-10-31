@@ -1,25 +1,30 @@
-package org.nakonechnyi.domain;
+package org.nakonechnyi.domain.my_sql;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.nakonechnyi.domain.BaseContact;
 import org.nakonechnyi.domain.validator.Phone;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * @autor A_Nakonechnyi
  * @date 23.10.2016.
  */
 
+@Getter
+@Setter
 @Entity
-@Table(name = "contacts")
-@Getter @Setter
+@Table(name = BaseContact.TABLE_NAME)
 @ToString
-public class Contact {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Contact /*extends BaseContact */implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,10 +36,10 @@ public class Contact {
     private User owner;
 
     @NotEmpty
-    @Size (min = 4)
+    @Size(min = 4)
     private String lastName;
     @NotEmpty
-    @Size (min = 4)
+    @Size(min = 4)
     private String firstName;
     @NotEmpty
     @Size (min = 4)
@@ -51,4 +56,16 @@ public class Contact {
     @Email
     private String email;
 
+    public Contact() {
+    }
+
+    public Contact(BaseContact contact) {
+        setFirstName(contact.getFirstName());
+        setLastName(contact.getLastName());
+        setSurname(contact.getSurname());
+        setPhone(contact.getPhone());
+        setAddress(contact.getAddress());
+        setHomePhone(contact.getHomePhone());
+
+    }
 }

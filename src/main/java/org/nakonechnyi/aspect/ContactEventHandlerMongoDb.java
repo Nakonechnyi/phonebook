@@ -1,6 +1,8 @@
-package org.nakonechnyi.domain;
+package org.nakonechnyi.aspect;
 
-import org.nakonechnyi.repository.IUserRepository;
+import org.nakonechnyi.domain.mongo_db.Contact;
+import org.nakonechnyi.domain.mongo_db.User;
+import org.nakonechnyi.repository.MongoUserRepository;
 import org.nakonechnyi.service.ISecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
@@ -13,10 +15,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RepositoryEventHandler
-public class ContactEventHandler {
+public class ContactEventHandlerMongoDb {
 
     @Autowired
-    private IUserRepository userRepository;
+    private MongoUserRepository userRepository;
     @Autowired
     private ISecurityService securityService;
 

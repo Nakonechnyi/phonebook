@@ -14,7 +14,6 @@ import java.util.Properties;
 public class CustomPropertySourcesPlaceholderConfigurer extends PropertySourcesPlaceholderConfigurer implements InitializingBean {
 
     public void afterPropertiesSet(){
-        System.err.println("eee");
         try{
             Properties loadedProperties = this.mergeProperties();
             for(Map.Entry<Object, Object> singleProperty : loadedProperties.entrySet()){

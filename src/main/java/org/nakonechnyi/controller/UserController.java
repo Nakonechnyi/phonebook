@@ -1,9 +1,9 @@
 package org.nakonechnyi.controller;
 
 import org.nakonechnyi.config.CustomPropertySourcesPlaceholderConfigurer;
-import org.nakonechnyi.domain.User;
+import org.nakonechnyi.domain.BaseUser;
+import org.nakonechnyi.service.AbstractUserService;
 import org.nakonechnyi.service.ISecurityService;
-import org.nakonechnyi.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.InvalidParameterException;
+
 /**
  * @autor A_Nakonechnyi
  * @date 23.10.2016.
@@ -24,15 +26,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private AbstractUserService userService;
 
     @Autowired
     private ISecurityService securityService;
 
     @PostMapping(value = "/user/registration")
-    public HttpEntity<?> registration(@ModelAttribute("user") @Validated User user){
-        userService.register(user);
-        return ResponseEntity.ok("Successful registration!");
+    public HttpEntity<?> registration(@ModelAttribute("user") @Validated BaseUser user){
+        try {
+            userService.register(user);
+        } catch (InvalidParameterException e) {
+            return ResponseEntity.badRequest().body("<a href='/index'>Login already exists</a> ");
+        }
+//        securityService.autologin(user.getLogin(), user.getPassword());
+        return ResponseEntity.ok("<a href='/api'>Successful registration! To API...</a>");
     }
 
     @GetMapping(value= "/login")

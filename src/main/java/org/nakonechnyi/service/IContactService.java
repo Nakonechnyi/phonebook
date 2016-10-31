@@ -1,6 +1,6 @@
 package org.nakonechnyi.service;
 
-import org.nakonechnyi.domain.Contact;
+import org.nakonechnyi.domain.my_sql.Contact;
 import org.springframework.data.rest.webmvc.PersistentEntityResource;
 import org.springframework.data.rest.webmvc.PersistentEntityResourceAssembler;
 import org.springframework.hateoas.Resource;
