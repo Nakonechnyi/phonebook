@@ -46,9 +46,7 @@ public class UserController {
     public String login(
             @RequestParam(value = "j_username") String login,
             @RequestParam(value = "j_password") String password) {
-
-        System.err.println("/login");
-        securityService.autologin(login, password);
+        securityService.autoLogin(login, password);
         new CustomPropertySourcesPlaceholderConfigurer().afterPropertiesSet();
         return "redirect:/api";
     }

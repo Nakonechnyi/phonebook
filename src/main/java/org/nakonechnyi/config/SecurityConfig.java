@@ -24,8 +24,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${db_type}")
     DbQualifier.DbSource dbType;
-//    @Autowired
-//    private DataSource dataSource;
     @Autowired
     MongoDbUserDetailsService mongoUserDetailsService;
     @Autowired
@@ -72,7 +70,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return encoder;
     }
 
-
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
@@ -81,14 +78,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
-//    @Bean(name = "dataSource")
-//    public DriverManagerDataSource dataSource() {
-//        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-//        driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-//        driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/phonebook");
-//        driverManagerDataSource.setUsername("root");
-//        driverManagerDataSource.setPassword("polipol11");
-//        return driverManagerDataSource;
-//    }
 
 }

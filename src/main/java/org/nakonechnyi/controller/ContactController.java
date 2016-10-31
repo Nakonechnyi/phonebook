@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.PersistentEntityResource;
 import org.springframework.data.rest.webmvc.PersistentEntityResourceAssembler;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
+import org.springframework.data.rest.webmvc.support.RepositoryEntityLinks;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.validation.annotation.Validated;
@@ -22,6 +23,9 @@ public class ContactController {
 
     @Autowired
     private AbstractContactService contactService;
+
+    @Autowired
+    private RepositoryEntityLinks entityLinks;
 
     @ResponseBody
     @RequestMapping(value = "/my", method = RequestMethod.GET)

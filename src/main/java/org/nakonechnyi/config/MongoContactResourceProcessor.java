@@ -1,6 +1,6 @@
 package org.nakonechnyi.config;
 
-import org.nakonechnyi.domain.my_sql.Contact;
+import org.nakonechnyi.domain.mongo_db.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.support.RepositoryEntityLinks;
 import org.springframework.hateoas.Link;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @date 26.10.2016.
  */
 @Component
-public class ContactResourceProcessor implements ResourceProcessor<Resource<Contact>> {
+public class MongoContactResourceProcessor implements ResourceProcessor<Resource<Contact>> {
 
     @Autowired
     private RepositoryEntityLinks entityLinks;
@@ -27,8 +27,6 @@ public class ContactResourceProcessor implements ResourceProcessor<Resource<Cont
                 .withRel("delete"));
         contactResource.add(new Link("http://localhost:8080/logout", "logout"));
         contactResource.add(new Link("http://localhost:8080/api", "menu"));
-
-
 
         return contactResource;
     }

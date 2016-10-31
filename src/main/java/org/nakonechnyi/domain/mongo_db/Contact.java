@@ -19,7 +19,7 @@ import javax.persistence.Id;
 @Setter
 @Document(collection = BaseContact.TABLE_NAME)
 @ToString
-public class Contact extends BaseContact /*implements Serializable*/ {
+public class Contact extends BaseContact {
 
     @Id
     private ObjectId id;
@@ -27,28 +27,6 @@ public class Contact extends BaseContact /*implements Serializable*/ {
 //    @NotNull Sets by handler
     @DBRef
     private User owner;
-
-
-//    @NotEmpty
-//    @Size(min = 4)
-//    private String lastName;
-//    @NotEmpty
-//    @Size (min = 4)
-//    private String firstName;
-//    @NotEmpty
-//    @Size (min = 4)
-//    private String surname;
-//
-//    @Phone
-//    @NotEmpty
-//    private String phone;
-//
-//    private String homePhone;
-//
-//    private String address;
-//
-//    @Email
-//    private String email;
 
 
     public Contact() {

@@ -16,7 +16,7 @@ import javax.persistence.Id;
 @Document(collection = BaseUser.TABLE_NAME)
 @Getter
 @Setter
-public class User extends BaseUser /*implements Serializable*/ {
+public class User extends BaseUser {
 
     @Id
     private String id;
@@ -30,20 +30,5 @@ public class User extends BaseUser /*implements Serializable*/ {
         setLogin(user.getLogin());
         setPib(user.getPib());
     }
-
-
-//    @NotEmpty
-//    @Size(min = 5)
-//    private String pib;
-//
-//    @NotEmpty
-//    @Size(min = 3)
-//    @Pattern(regexp = "^[a-z]*$")
-//    private String login;
-//
-//    @NotEmpty
-//    @Size(min = 5)
-//    @JsonIgnore
-//    private String password;
 
 }

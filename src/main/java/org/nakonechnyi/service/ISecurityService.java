@@ -6,7 +6,7 @@ package org.nakonechnyi.service;
  */
 public interface ISecurityService {
 
-    void autologin(String username, String password);
+    void autoLogin(String username, String password);
 
     String findLoggedInUsername();
 }
